@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PDF_RECIBO" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="84cbd0fd-00fc-4e39-87fc-92368805c5ab">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     cheque.`id_cheque` AS cheque_id_cheque,
+     cheque.`quantidade` AS cheque_quantidade,
+     cheque.`nchequeum` AS cheque_nchequeum,
+     cheque.`nchequedois` AS cheque_nchequedois,
+     cheque.`nchequetres` AS cheque_nchequetres,
+     cheque.`nchequequatro` AS cheque_nchequequatro,
+     cheque.`nchequecinco` AS cheque_nchequecinco,
+     cheque.`datachequeum` AS cheque_datachequeum,
+     cheque.`datachequedois` AS cheque_datachequedois,
+     cheque.`datachequetres` AS cheque_datachequetres,
+     cheque.`datachequequatro` AS cheque_datachequequatro,
+     cheque.`datachequecinco` AS cheque_datachequecinco,
+     cheque.`valorchequeum` AS cheque_valorchequeum,
+     cheque.`valorchequedois` AS cheque_valorchequedois,
+     cheque.`valorchequetres` AS cheque_valorchequetres,
+     cheque.`valorchequequatro` AS cheque_valorchequequatro,
+     cheque.`valorchequecinco` AS cheque_valorchequecinco,
+     cooperado.`n_inscricao` AS cooperado_n_inscricao,
+     cooperado.`nome` AS cooperado_nome,
+     cooperado.`cpf` AS cooperado_cpf,
+     cooperado.`telefone` AS cooperado_telefone,
+     cooperado.`cep` AS cooperado_cep,
+     cooperado.`uf` AS cooperado_uf,
+     cooperado.`cidade` AS cooperado_cidade,
+     cooperado.`bairro` AS cooperado_bairro,
+     cooperado.`rua` AS cooperado_rua,
+     cooperado.`numero` AS cooperado_numero,
+     cooperativa.`razaosocial` AS cooperativa_razaosocial,
+     cooperativa.`cnpj` AS cooperativa_cnpj,
+     cooperativa.`rua` AS cooperativa_rua,
+     cooperativa.`bairro` AS cooperativa_bairro,
+     cooperativa.`numero` AS cooperativa_numero,
+     cooperativa.`cidade` AS cooperativa_cidade,
+     cooperativa.`telefone` AS cooperativa_telefone,
+     cooperativa.`uf` AS cooperativa_uf,
+     recibo.`id_recibo` AS recibo_id_recibo,
+     recibo.`cpf_cooperado` AS recibo_cpf_cooperado,
+     recibo.`valor_da_nfe` AS recibo_valor_da_nfe,
+     recibo.`data_da_nfe` AS recibo_data_da_nfe,
+     recibo.`porcentagem_do_inss` AS recibo_porcentagem_do_inss,
+     recibo.`valor_do_inss` AS recibo_valor_do_inss,
+     recibo.`obs_do_inss` AS recibo_obs_do_inss,
+     recibo.`taxa_de_adm` AS recibo_taxa_de_adm,
+     recibo.`integralizacao` AS recibo_integralizacao,
+     recibo.`mensalidades` AS recibo_mensalidades,
+     recibo.`doacoes` AS recibo_doacoes,
+     recibo.`rateio_de_perdas` AS recibo_rateio_de_perdas,
+     recibo.`valor_total_repasse` AS recibo_valor_total_repasse,
+     recibo.`valor_total_liquido` AS recibo_valor_total_liquido,
+     recibo.`forma_de_pagamento` AS recibo_forma_de_pagamento,
+     recibo.`id_dinheiro` AS recibo_id_dinheiro,
+     recibo.`id_cheque` AS recibo_id_cheque,
+     dinheiro.`id_dinheiro` AS dinheiro_id_dinheiro,
+     dinheiro.`valor_total` AS dinheiro_valor_total,
+     dinheiro.`valor_pagamento` AS dinheiro_valor_pagamento,
+     dinheiro.`valor_troco` AS dinheiro_valor_troco,
+     dinheiro.`observacao` AS dinheiro_observacao,
+     usuario.`id` AS usuario_id,
+     usuario.`nome` AS usuario_nome,
+     usuario.`nascimento` AS usuario_nascimento,
+     usuario.`telefone` AS usuario_telefone,
+     usuario.`usuario` AS usuario_usuario,
+     usuario.`senha` AS usuario_senha,
+     cheque_A.`id_cheque` AS cheque_A_id_cheque,
+     cheque_A.`quantidade` AS cheque_A_quantidade,
+     cheque_A.`nchequeum` AS cheque_A_nchequeum,
+     cheque_A.`nchequedois` AS cheque_A_nchequedois,
+     cheque_A.`nchequetres` AS cheque_A_nchequetres,
+     cheque_A.`nchequequatro` AS cheque_A_nchequequatro,
+     cheque_A.`nchequecinco` AS cheque_A_nchequecinco,
+     cheque_A.`datachequeum` AS cheque_A_datachequeum,
+     cheque_A.`datachequedois` AS cheque_A_datachequedois,
+     cheque_A.`datachequetres` AS cheque_A_datachequetres,
+     cheque_A.`datachequequatro` AS cheque_A_datachequequatro,
+     cheque_A.`datachequecinco` AS cheque_A_datachequecinco,
+     cheque_A.`valorchequeum` AS cheque_A_valorchequeum,
+     cheque_A.`valorchequedois` AS cheque_A_valorchequedois,
+     cheque_A.`valorchequetres` AS cheque_A_valorchequetres,
+     cheque_A.`valorchequequatro` AS cheque_A_valorchequequatro,
+     cheque_A.`valorchequecinco` AS cheque_A_valorchequecinco,
+     cheque_B.`id_cheque` AS cheque_B_id_cheque,
+     cheque_B.`quantidade` AS cheque_B_quantidade,
+     cheque_B.`nchequeum` AS cheque_B_nchequeum,
+     cheque_B.`nchequedois` AS cheque_B_nchequedois,
+     cheque_B.`nchequetres` AS cheque_B_nchequetres,
+     cheque_B.`nchequequatro` AS cheque_B_nchequequatro,
+     cheque_B.`nchequecinco` AS cheque_B_nchequecinco,
+     cheque_B.`datachequeum` AS cheque_B_datachequeum,
+     cheque_B.`datachequedois` AS cheque_B_datachequedois,
+     cheque_B.`datachequetres` AS cheque_B_datachequetres,
+     cheque_B.`datachequequatro` AS cheque_B_datachequequatro,
+     cheque_B.`datachequecinco` AS cheque_B_datachequecinco,
+     cheque_B.`valorchequeum` AS cheque_B_valorchequeum,
+     cheque_B.`valorchequedois` AS cheque_B_valorchequedois,
+     cheque_B.`valorchequetres` AS cheque_B_valorchequetres,
+     cheque_B.`valorchequequatro` AS cheque_B_valorchequequatro,
+     cheque_B.`valorchequecinco` AS cheque_B_valorchequecinco,
+     cheque_C.`id_cheque` AS cheque_C_id_cheque,
+     cheque_C.`quantidade` AS cheque_C_quantidade,
+     cheque_C.`nchequeum` AS cheque_C_nchequeum,
+     cheque_C.`nchequedois` AS cheque_C_nchequedois,
+     cheque_C.`nchequetres` AS cheque_C_nchequetres,
+     cheque_C.`nchequequatro` AS cheque_C_nchequequatro,
+     cheque_C.`nchequecinco` AS cheque_C_nchequecinco,
+     cheque_C.`datachequeum` AS cheque_C_datachequeum,
+     cheque_C.`datachequedois` AS cheque_C_datachequedois,
+     cheque_C.`datachequetres` AS cheque_C_datachequetres,
+     cheque_C.`datachequequatro` AS cheque_C_datachequequatro,
+     cheque_C.`datachequecinco` AS cheque_C_datachequecinco,
+     cheque_C.`valorchequeum` AS cheque_C_valorchequeum,
+     cheque_C.`valorchequedois` AS cheque_C_valorchequedois,
+     cheque_C.`valorchequetres` AS cheque_C_valorchequetres,
+     cheque_C.`valorchequequatro` AS cheque_C_valorchequequatro,
+     cheque_C.`valorchequecinco` AS cheque_C_valorchequecinco,
+     cooperado_A.`n_inscricao` AS cooperado_A_n_inscricao,
+     cooperado_A.`nome` AS cooperado_A_nome,
+     cooperado_A.`cpf` AS cooperado_A_cpf,
+     cooperado_A.`telefone` AS cooperado_A_telefone,
+     cooperado_A.`cep` AS cooperado_A_cep,
+     cooperado_A.`uf` AS cooperado_A_uf,
+     cooperado_A.`cidade` AS cooperado_A_cidade,
+     cooperado_A.`bairro` AS cooperado_A_bairro,
+     cooperado_A.`rua` AS cooperado_A_rua,
+     cooperado_A.`numero` AS cooperado_A_numero,
+     cooperativa_A.`razaosocial` AS cooperativa_A_razaosocial,
+     cooperativa_A.`cnpj` AS cooperativa_A_cnpj,
+     cooperativa_A.`rua` AS cooperativa_A_rua,
+     cooperativa_A.`bairro` AS cooperativa_A_bairro,
+     cooperativa_A.`numero` AS cooperativa_A_numero,
+     cooperativa_A.`cidade` AS cooperativa_A_cidade,
+     cooperativa_A.`telefone` AS cooperativa_A_telefone,
+     cooperativa_A.`uf` AS cooperativa_A_uf,
+     dinheiro_A.`id_dinheiro` AS dinheiro_A_id_dinheiro,
+     dinheiro_A.`valor_total` AS dinheiro_A_valor_total,
+     dinheiro_A.`valor_pagamento` AS dinheiro_A_valor_pagamento,
+     dinheiro_A.`valor_troco` AS dinheiro_A_valor_troco,
+     dinheiro_A.`observacao` AS dinheiro_A_observacao,
+     recibo_A.`id_recibo` AS recibo_A_id_recibo,
+     recibo_A.`cpf_cooperado` AS recibo_A_cpf_cooperado,
+     recibo_A.`valor_da_nfe` AS recibo_A_valor_da_nfe,
+     recibo_A.`data_da_nfe` AS recibo_A_data_da_nfe,
+     recibo_A.`porcentagem_do_inss` AS recibo_A_porcentagem_do_inss,
+     recibo_A.`valor_do_inss` AS recibo_A_valor_do_inss,
+     recibo_A.`obs_do_inss` AS recibo_A_obs_do_inss,
+     recibo_A.`taxa_de_adm` AS recibo_A_taxa_de_adm,
+     recibo_A.`integralizacao` AS recibo_A_integralizacao,
+     recibo_A.`mensalidades` AS recibo_A_mensalidades,
+     recibo_A.`doacoes` AS recibo_A_doacoes,
+     recibo_A.`rateio_de_perdas` AS recibo_A_rateio_de_perdas,
+     recibo_A.`valor_total_repasse` AS recibo_A_valor_total_repasse,
+     recibo_A.`valor_total_liquido` AS recibo_A_valor_total_liquido,
+     recibo_A.`forma_de_pagamento` AS recibo_A_forma_de_pagamento,
+     recibo_A.`id_dinheiro` AS recibo_A_id_dinheiro,
+     recibo_A.`id_cheque` AS recibo_A_id_cheque,
+     registroimprimir.`id` AS registroimprimir_id,
+     registroimprimir.`registro_data` AS registroimprimir_registro_data,
+     registroimprimir.`registro_hora` AS registroimprimir_registro_hora,
+     registroimprimir.`id_usuario` AS registroimprimir_id_usuario,
+     registroimprimir.`nome_usuario` AS registroimprimir_nome_usuario,
+     usuario_A.`id` AS usuario_A_id,
+     usuario_A.`nome` AS usuario_A_nome,
+     usuario_A.`nascimento` AS usuario_A_nascimento,
+     usuario_A.`telefone` AS usuario_A_telefone,
+     usuario_A.`usuario` AS usuario_A_usuario,
+     usuario_A.`senha` AS usuario_A_senha
+FROM
+     `cheque` cheque INNER JOIN `recibo` recibo ON cheque.`id_cheque` = recibo.`id_cheque`
+     INNER JOIN `cooperado` cooperado ON recibo.`cpf_cooperado` = cooperado.`cpf`
+     INNER JOIN `dinheiro` dinheiro ON recibo.`id_dinheiro` = dinheiro.`id_dinheiro`
+     INNER JOIN `cheque` cheque_A ON recibo.`id_cheque` = cheque_A.`id_cheque`
+     INNER JOIN `cheque` cheque_B ON recibo.`id_cheque` = cheque_B.`id_cheque`
+     INNER JOIN `cheque` cheque_C ON recibo.`id_cheque` = cheque_C.`id_cheque`
+     INNER JOIN `cooperado` cooperado_A ON recibo.`cpf_cooperado` = cooperado_A.`cpf`
+     INNER JOIN `dinheiro` dinheiro_A ON recibo.`id_dinheiro` = dinheiro_A.`id_dinheiro`
+     INNER JOIN `recibo` recibo_A ON dinheiro.`id_dinheiro` = recibo_A.`id_dinheiro`
+     AND cooperado.`cpf` = recibo_A.`cpf_cooperado`
+     AND cheque.`id_cheque` = recibo_A.`id_cheque`,
+     `usuario` usuario INNER JOIN `registroimprimir` registroimprimir ON usuario.`usuario` = registroimprimir.`nome_usuario`
+     INNER JOIN `usuario` usuario_A ON registroimprimir.`nome_usuario` = usuario_A.`usuario`,
+     `cooperativa` cooperativa,
+     `cooperativa` cooperativa_A]]>
+	</queryString>
+	<field name="cheque_id_cheque" class="java.lang.Integer"/>
+	<field name="cheque_quantidade" class="java.lang.String"/>
+	<field name="cheque_nchequeum" class="java.lang.Integer"/>
+	<field name="cheque_nchequedois" class="java.lang.Integer"/>
+	<field name="cheque_nchequetres" class="java.lang.Integer"/>
+	<field name="cheque_nchequequatro" class="java.lang.Integer"/>
+	<field name="cheque_nchequecinco" class="java.lang.Integer"/>
+	<field name="cheque_datachequeum" class="java.lang.String"/>
+	<field name="cheque_datachequedois" class="java.lang.String"/>
+	<field name="cheque_datachequetres" class="java.lang.String"/>
+	<field name="cheque_datachequequatro" class="java.lang.String"/>
+	<field name="cheque_datachequecinco" class="java.lang.String"/>
+	<field name="cheque_valorchequeum" class="java.lang.Double"/>
+	<field name="cheque_valorchequedois" class="java.lang.Double"/>
+	<field name="cheque_valorchequetres" class="java.lang.Double"/>
+	<field name="cheque_valorchequequatro" class="java.lang.Double"/>
+	<field name="cheque_valorchequecinco" class="java.lang.Double"/>
+	<field name="cooperado_n_inscricao" class="java.lang.Integer"/>
+	<field name="cooperado_nome" class="java.lang.String"/>
+	<field name="cooperado_cpf" class="java.lang.String"/>
+	<field name="cooperado_telefone" class="java.lang.String"/>
+	<field name="cooperado_cep" class="java.lang.String"/>
+	<field name="cooperado_uf" class="java.lang.String"/>
+	<field name="cooperado_cidade" class="java.lang.String"/>
+	<field name="cooperado_bairro" class="java.lang.String"/>
+	<field name="cooperado_rua" class="java.lang.String"/>
+	<field name="cooperado_numero" class="java.lang.Integer"/>
+	<field name="cooperativa_razaosocial" class="java.lang.String"/>
+	<field name="cooperativa_cnpj" class="java.lang.String"/>
+	<field name="cooperativa_rua" class="java.lang.String"/>
+	<field name="cooperativa_bairro" class="java.lang.String"/>
+	<field name="cooperativa_numero" class="java.lang.Integer"/>
+	<field name="cooperativa_cidade" class="java.lang.String"/>
+	<field name="cooperativa_telefone" class="java.lang.String"/>
+	<field name="cooperativa_uf" class="java.lang.String"/>
+	<field name="recibo_id_recibo" class="java.lang.Integer"/>
+	<field name="recibo_cpf_cooperado" class="java.lang.String"/>
+	<field name="recibo_valor_da_nfe" class="java.lang.Double"/>
+	<field name="recibo_data_da_nfe" class="java.lang.String"/>
+	<field name="recibo_porcentagem_do_inss" class="java.lang.Double"/>
+	<field name="recibo_valor_do_inss" class="java.lang.Double"/>
+	<field name="recibo_obs_do_inss" class="java.lang.String"/>
+	<field name="recibo_taxa_de_adm" class="java.lang.Double"/>
+	<field name="recibo_integralizacao" class="java.lang.Double"/>
+	<field name="recibo_mensalidades" class="java.lang.Double"/>
+	<field name="recibo_doacoes" class="java.lang.Double"/>
+	<field name="recibo_rateio_de_perdas" class="java.lang.Double"/>
+	<field name="recibo_valor_total_repasse" class="java.lang.Double"/>
+	<field name="recibo_valor_total_liquido" class="java.lang.Double"/>
+	<field name="recibo_forma_de_pagamento" class="java.lang.String"/>
+	<field name="recibo_id_dinheiro" class="java.lang.Integer"/>
+	<field name="recibo_id_cheque" class="java.lang.Integer"/>
+	<field name="dinheiro_id_dinheiro" class="java.lang.Integer"/>
+	<field name="dinheiro_valor_total" class="java.lang.Double"/>
+	<field name="dinheiro_valor_pagamento" class="java.lang.Double"/>
+	<field name="dinheiro_valor_troco" class="java.lang.Double"/>
+	<field name="dinheiro_observacao" class="java.lang.String"/>
+	<field name="usuario_id" class="java.lang.Integer"/>
+	<field name="usuario_nome" class="java.lang.String"/>
+	<field name="usuario_nascimento" class="java.lang.String"/>
+	<field name="usuario_telefone" class="java.lang.String"/>
+	<field name="usuario_usuario" class="java.lang.String"/>
+	<field name="usuario_senha" class="java.lang.String"/>
+	<field name="cheque_A_id_cheque" class="java.lang.Integer"/>
+	<field name="cheque_A_quantidade" class="java.lang.String"/>
+	<field name="cheque_A_nchequeum" class="java.lang.Integer"/>
+	<field name="cheque_A_nchequedois" class="java.lang.Integer"/>
+	<field name="cheque_A_nchequetres" class="java.lang.Integer"/>
+	<field name="cheque_A_nchequequatro" class="java.lang.Integer"/>
+	<field name="cheque_A_nchequecinco" class="java.lang.Integer"/>
+	<field name="cheque_A_datachequeum" class="java.lang.String"/>
+	<field name="cheque_A_datachequedois" class="java.lang.String"/>
+	<field name="cheque_A_datachequetres" class="java.lang.String"/>
+	<field name="cheque_A_datachequequatro" class="java.lang.String"/>
+	<field name="cheque_A_datachequecinco" class="java.lang.String"/>
+	<field name="cheque_A_valorchequeum" class="java.lang.Double"/>
+	<field name="cheque_A_valorchequedois" class="java.lang.Double"/>
+	<field name="cheque_A_valorchequetres" class="java.lang.Double"/>
+	<field name="cheque_A_valorchequequatro" class="java.lang.Double"/>
+	<field name="cheque_A_valorchequecinco" class="java.lang.Double"/>
+	<field name="cheque_B_id_cheque" class="java.lang.Integer"/>
+	<field name="cheque_B_quantidade" class="java.lang.String"/>
+	<field name="cheque_B_nchequeum" class="java.lang.Integer"/>
+	<field name="cheque_B_nchequedois" class="java.lang.Integer"/>
+	<field name="cheque_B_nchequetres" class="java.lang.Integer"/>
+	<field name="cheque_B_nchequequatro" class="java.lang.Integer"/>
+	<field name="cheque_B_nchequecinco" class="java.lang.Integer"/>
+	<field name="cheque_B_datachequeum" class="java.lang.String"/>
+	<field name="cheque_B_datachequedois" class="java.lang.String"/>
+	<field name="cheque_B_datachequetres" class="java.lang.String"/>
+	<field name="cheque_B_datachequequatro" class="java.lang.String"/>
+	<field name="cheque_B_datachequecinco" class="java.lang.String"/>
+	<field name="cheque_B_valorchequeum" class="java.lang.Double"/>
+	<field name="cheque_B_valorchequedois" class="java.lang.Double"/>
+	<field name="cheque_B_valorchequetres" class="java.lang.Double"/>
+	<field name="cheque_B_valorchequequatro" class="java.lang.Double"/>
+	<field name="cheque_B_valorchequecinco" class="java.lang.Double"/>
+	<field name="cheque_C_id_cheque" class="java.lang.Integer"/>
+	<field name="cheque_C_quantidade" class="java.lang.String"/>
+	<field name="cheque_C_nchequeum" class="java.lang.Integer"/>
+	<field name="cheque_C_nchequedois" class="java.lang.Integer"/>
+	<field name="cheque_C_nchequetres" class="java.lang.Integer"/>
+	<field name="cheque_C_nchequequatro" class="java.lang.Integer"/>
+	<field name="cheque_C_nchequecinco" class="java.lang.Integer"/>
+	<field name="cheque_C_datachequeum" class="java.lang.String"/>
+	<field name="cheque_C_datachequedois" class="java.lang.String"/>
+	<field name="cheque_C_datachequetres" class="java.lang.String"/>
+	<field name="cheque_C_datachequequatro" class="java.lang.String"/>
+	<field name="cheque_C_datachequecinco" class="java.lang.String"/>
+	<field name="cheque_C_valorchequeum" class="java.lang.Double"/>
+	<field name="cheque_C_valorchequedois" class="java.lang.Double"/>
+	<field name="cheque_C_valorchequetres" class="java.lang.Double"/>
+	<field name="cheque_C_valorchequequatro" class="java.lang.Double"/>
+	<field name="cheque_C_valorchequecinco" class="java.lang.Double"/>
+	<field name="cooperado_A_n_inscricao" class="java.lang.Integer"/>
+	<field name="cooperado_A_nome" class="java.lang.String"/>
+	<field name="cooperado_A_cpf" class="java.lang.String"/>
+	<field name="cooperado_A_telefone" class="java.lang.String"/>
+	<field name="cooperado_A_cep" class="java.lang.String"/>
+	<field name="cooperado_A_uf" class="java.lang.String"/>
+	<field name="cooperado_A_cidade" class="java.lang.String"/>
+	<field name="cooperado_A_bairro" class="java.lang.String"/>
+	<field name="cooperado_A_rua" class="java.lang.String"/>
+	<field name="cooperado_A_numero" class="java.lang.Integer"/>
+	<field name="cooperativa_A_razaosocial" class="java.lang.String"/>
+	<field name="cooperativa_A_cnpj" class="java.lang.String"/>
+	<field name="cooperativa_A_rua" class="java.lang.String"/>
+	<field name="cooperativa_A_bairro" class="java.lang.String"/>
+	<field name="cooperativa_A_numero" class="java.lang.Integer"/>
+	<field name="cooperativa_A_cidade" class="java.lang.String"/>
+	<field name="cooperativa_A_telefone" class="java.lang.String"/>
+	<field name="cooperativa_A_uf" class="java.lang.String"/>
+	<field name="dinheiro_A_id_dinheiro" class="java.lang.Integer"/>
+	<field name="dinheiro_A_valor_total" class="java.lang.Double"/>
+	<field name="dinheiro_A_valor_pagamento" class="java.lang.Double"/>
+	<field name="dinheiro_A_valor_troco" class="java.lang.Double"/>
+	<field name="dinheiro_A_observacao" class="java.lang.String"/>
+	<field name="recibo_A_id_recibo" class="java.lang.Integer"/>
+	<field name="recibo_A_cpf_cooperado" class="java.lang.String"/>
+	<field name="recibo_A_valor_da_nfe" class="java.lang.Double"/>
+	<field name="recibo_A_data_da_nfe" class="java.lang.String"/>
+	<field name="recibo_A_porcentagem_do_inss" class="java.lang.Double"/>
+	<field name="recibo_A_valor_do_inss" class="java.lang.Double"/>
+	<field name="recibo_A_obs_do_inss" class="java.lang.String"/>
+	<field name="recibo_A_taxa_de_adm" class="java.lang.Double"/>
+	<field name="recibo_A_integralizacao" class="java.lang.Double"/>
+	<field name="recibo_A_mensalidades" class="java.lang.Double"/>
+	<field name="recibo_A_doacoes" class="java.lang.Double"/>
+	<field name="recibo_A_rateio_de_perdas" class="java.lang.Double"/>
+	<field name="recibo_A_valor_total_repasse" class="java.lang.Double"/>
+	<field name="recibo_A_valor_total_liquido" class="java.lang.Double"/>
+	<field name="recibo_A_forma_de_pagamento" class="java.lang.String"/>
+	<field name="recibo_A_id_dinheiro" class="java.lang.Integer"/>
+	<field name="recibo_A_id_cheque" class="java.lang.Integer"/>
+	<field name="registroimprimir_id" class="java.lang.Integer"/>
+	<field name="registroimprimir_registro_data" class="java.lang.String"/>
+	<field name="registroimprimir_registro_hora" class="java.lang.String"/>
+	<field name="registroimprimir_id_usuario" class="java.lang.Integer"/>
+	<field name="registroimprimir_nome_usuario" class="java.lang.String"/>
+	<field name="usuario_A_id" class="java.lang.Integer"/>
+	<field name="usuario_A_nome" class="java.lang.String"/>
+	<field name="usuario_A_nascimento" class="java.lang.String"/>
+	<field name="usuario_A_telefone" class="java.lang.String"/>
+	<field name="usuario_A_usuario" class="java.lang.String"/>
+	<field name="usuario_A_senha" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="356" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="38" width="28" height="14" uuid="1cfea52c-2ce9-4009-8fb1-3b1684f914fe"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CNPJ:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="52" width="58" height="14" uuid="df070e7e-51da-42f1-8dc1-97304b6a678f"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENDEREÇO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="195" y="38" width="54" height="14" uuid="247fab50-d397-48a9-a1c5-40b41b3f6ef2"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONE:]]></text>
+			</staticText>
+			<line>
+				<reportElement mode="Opaque" x="0" y="78" width="555" height="1" backcolor="#000000" uuid="cd0cde7c-dd77-4554-be27-53fd28b2c4a6"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="12" width="413" height="23" uuid="38ab70d9-aa9a-44f0-b724-56c57eced6b9"/>
+				<textElement>
+					<font fontName="Calibri" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cooperativa_razaosocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="249" y="38" width="164" height="14" uuid="cf5769b1-0e0b-47c6-a6fb-b6b6f0566350"/>
+				<textFieldExpression><![CDATA[$F{cooperativa_telefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="28" y="38" width="167" height="14" uuid="f3d5b397-6c15-41b7-a396-6fafcf36ca43"/>
+				<textFieldExpression><![CDATA[$F{cooperativa_cnpj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="52" width="355" height="14" uuid="1f7447e8-7774-4e4b-9459-855735cdcc3c"/>
+				<textFieldExpression><![CDATA[$F{cooperativa_rua} + ", " + $F{cooperativa_numero} + ", " + $F{cooperativa_bairro} + ", " + $F{cooperativa_cidade} + " - " + $F{cooperativa_uf}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="88" width="555" height="16" uuid="b7c94ddd-1a26-43e2-a07c-64dd299c2ca9"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[RECIBO DE PAGTO DE VALOR LIQUIDO SOBRE COMERCIALIZAÇÃO A COOPERADO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="111" width="500" height="136" uuid="cbb54907-2efb-4b89-bcac-d79d0a65f9f7"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="500" y="111" width="55" height="136" uuid="82f2c3ee-ed0b-452c-aad6-932b6d7fe2fa"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="111" width="500" height="17" uuid="bef9f57a-3673-4b4b-b338-8aeee119f1b4"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[(+) Valor da Nota Fiscal ..........................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="128" width="500" height="17" uuid="f449951f-523e-412a-aaf6-723ca8304010"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[(-) INSS ......................................................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="145" width="500" height="17" uuid="fe3d1add-8363-4843-a809-8671353107da"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[(-) Taxa de Administação ........................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="162" width="500" height="17" uuid="41f1f2c9-a7ee-4d5a-9017-20bcca4d3361"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[(-) Integralização ......................................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="179" width="500" height="17" uuid="fbcb3d50-936f-4215-88e0-d36d7daaee29"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[(-) Mensalidades ......................................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="196" width="500" height="17" uuid="5f31b3b4-24ba-4476-8495-3ed27a0a1e2c"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[(-) Doações ...............................................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="213" width="500" height="17" uuid="4d55a400-e141-424b-b8a1-f2f157cc36dd"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[(-) Rateio de Perdas .................................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="230" width="500" height="17" uuid="1a5f1832-c69a-430e-b91b-14a6b707f228"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Valor Total do Repasse ...........................................................................................................................................]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="500" y="111" width="55" height="17" uuid="cde9a416-ca80-4d70-9421-7d2fda4c384c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recibo_valor_da_nfe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="128" width="55" height="17" uuid="14140faa-dbb7-47fd-b201-9bec39b559e0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recibo_valor_do_inss}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="145" width="55" height="17" uuid="070ffbb6-73cb-45d1-94f7-b4fdc755ccf0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recibo_taxa_de_adm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="162" width="55" height="17" uuid="bf263bc4-a6c4-4d7e-8a06-0e141ce1339b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recibo_integralizacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="179" width="55" height="17" uuid="2a1ca1e3-4b3d-4145-915b-db61b41b930f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recibo_mensalidades}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="196" width="55" height="17" uuid="fc8a470d-8292-4a1e-b7db-1e9d84f0a73b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recibo_doacoes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="213" width="55" height="17" uuid="9de16030-744f-453f-95bd-e1e0272fdc66"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recibo_rateio_de_perdas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="230" width="55" height="17" uuid="a39b3353-e7ad-4fe4-99fa-2b10b65c4a19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recibo_valor_total_repasse}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="247" width="500" height="20" uuid="6fcfa275-de12-4ba4-854c-b164f9830796"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="500" y="247" width="55" height="20" uuid="acf5df54-b975-40c3-8928-f5645f655bbc"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="247" width="500" height="20" uuid="99bb77f0-0a19-4d54-b611-1ba9b9b7589c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Valor Total Liquido a Receber .............................................................................................................]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="500" y="247" width="55" height="20" uuid="75b9134b-f208-4915-b656-fd54a8ed2258"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recibo_valor_total_liquido}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="284" width="500" height="34" uuid="6302327e-1fa8-4714-9733-82a821a42b56"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="284" width="500" height="17" uuid="883b1aeb-a361-49dd-a24e-05bb84db4e69"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Valor do Pagamento ................................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="301" width="500" height="17" uuid="a9dc6004-da80-4683-81cb-1ad341433d96"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Valor Demasiado ......................................................................................................................................................]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="500" y="284" width="55" height="34" uuid="a5e92d1f-2fb7-4f42-bce6-32a985d702ce"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="318" width="500" height="17" uuid="bb8825ee-95b1-4b8f-9168-f969de56e7fc"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="500" y="318" width="55" height="17" uuid="41e09323-84a3-4c3f-b293-382b7cd7e554"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="318" width="500" height="17" uuid="7ba49535-dafd-42f1-a03a-fc0d05823e1e"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Valor da NF-e]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="500" y="284" width="55" height="17" uuid="6c524c1d-b357-4cbe-9c68-85eac5367197"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dinheiro_valor_pagamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="301" width="55" height="17" uuid="cf05ebf5-2efe-4d3f-87d6-d0e12b4a2228"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dinheiro_valor_troco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="318" width="55" height="17" uuid="f9210b35-18d7-4d23-8cef-d16ee6679cb6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recibo_valor_da_nfe}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-10" y="-13" width="38" height="13" forecolor="#CCCCCC" uuid="af6e4eee-f556-4c18-a843-36d4f9b123e1"/>
+				<textElement>
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1º via]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="295" y="-13" width="270" height="13" forecolor="#CCCCCC" uuid="817cd5e4-afc1-4ad2-802f-24773d7fd031"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{registroimprimir_nome_usuario}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement x="432" y="2" width="123" height="76" uuid="11d8b943-33e8-4cc4-93e9-9ac36a4b110b"/>
+				<imageExpression><![CDATA["C:\\RC SISTEMA\\temp\\logo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="249" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="11" width="555" height="1" backcolor="#000000" uuid="fb6cdebe-c34b-4c84-89c3-cca2700fc9ee"/>
+			</line>
+			<line>
+				<reportElement x="0" y="77" width="555" height="1" backcolor="#000000" uuid="9c34bf23-cdc0-4650-8d4c-b2a70179e8e5"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="22" width="69" height="14" uuid="00d3c931-9341-401f-a1cf-49a5fb341e3b"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COOPERADO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="36" width="28" height="14" uuid="bb92a9d5-baa7-476b-8806-732eea797e3d"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="50" width="58" height="14" uuid="c45f0a0d-b318-4196-920a-3c8a09e4dfe8"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENDEREÇO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="69" y="22" width="486" height="14" uuid="9f4f83c2-d492-4798-9761-62ac42560c34"/>
+				<textFieldExpression><![CDATA[$F{cooperado_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="28" y="36" width="242" height="14" uuid="194c156f-c25e-47a5-b7cd-e8f8f7c02a34"/>
+				<textFieldExpression><![CDATA[$F{cooperado_cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="50" width="497" height="14" uuid="ec259078-7751-4b0d-becf-6f474be4b7a8"/>
+				<textFieldExpression><![CDATA[$F{cooperado_rua} + ", " + $F{cooperado_numero} + ", " + $F{cooperado_bairro} + ", " + $F{cooperado_cidade} + " - " + $F{cooperado_uf}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="132" width="17" height="23" uuid="81ec8b21-41f3-4a74-a3ce-68160e59bb8c"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[Eu,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="471" y="132" width="84" height="23" uuid="f618b665-5322-4144-ae90-6b50326d686c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[portador do CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="132" width="454" height="23" uuid="e762cfee-88b9-47da-8ca0-7d3a1e4fa0fd"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[ ___________________________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="155" width="255" height="23" uuid="8e8c1f36-bfc4-4471-b070-c65a701794bf"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[referente a repasse por fornecimento da NF-e de Nº]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="530" y="155" width="25" height="23" uuid="a274ca51-2354-4de9-9e54-760df86db06b"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="452" y="155" width="78" height="23" uuid="91834212-5f9f-4617-bb7b-8b0f4bb858dd"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[____________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="155" width="197" height="23" uuid="e95d813f-33c3-47c5-8cc1-e1494ae39f55"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[_________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="178" width="28" height="23" uuid="32c81055-c5eb-414f-8c28-25320466b932"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="178" width="99" height="23" uuid="0deabfd7-9273-4500-9f6f-9ef0edd1c492"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[____/____/______,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="178" width="101" height="23" uuid="fc38b37e-b217-42cb-86a9-18b0a29de9f1"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[sendo descontados:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="228" y="178" width="327" height="23" uuid="6ecbda0c-840d-4225-b7d0-84a725c5d96a"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[______________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="201" width="555" height="23" uuid="3fc052a4-c6f3-4bbe-b805-525e204d6a35"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[______________________________________________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="224" width="555" height="23" uuid="2e41bd30-4f45-4ca9-b356-25327b09e5d2"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[______________________________________________________________________________________________]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="124" splitType="Stretch">
+			<staticText>
+				<reportElement x="195" y="84" width="360" height="20" uuid="aec1e2f3-3809-4ed5-ae93-d2942d5359fe"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Pelo que firmo o presente recibo dando plena e total quitação.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="195" y="104" width="360" height="20" uuid="746abada-552b-4452-b6f1-27e74dfdc905"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[O referido é verdade e dou Fé.]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="73" splitType="Stretch">
+			<textField>
+				<reportElement x="-10" y="60" width="207" height="13" forecolor="#666666" uuid="2759e405-abe7-4a28-a0e2-73a4e9850d8a"/>
+				<textElement>
+					<font fontName="Calibri" isBold="true"/>
+					<paragraph firstLineIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{registroimprimir_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
